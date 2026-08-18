@@ -1,0 +1,12 @@
+{
+  "policyId": "interviewtopia-2026-household-3",
+  "residents": 3,
+  "currency": "GBP",
+  "calculation": "NON_CUMULATIVE",
+  "rounding": "HALF_UP_TO_PENNY",
+  "bands": [
+    { "minimumIncomePence": 1800001, "maximumIncomePence": 3500000, "rateBasisPoints": 500 },
+    { "minimumIncomePence": 0, "maximumIncomePence": 1800000, "rateBasisPoints": 0 },
+    { "minimumIncomePence": 3500001, "maximumIncomePence": null, "rateBasisPoints": 1500 }
+  ]
+}
