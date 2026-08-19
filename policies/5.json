@@ -1,12 +1,12 @@
 {
   "policyId": "interviewtopia-2026-household-5",
   "residents": 5,
-  "currency": "GBP",
+  "currency": "USD",
   "calculation": "NON_CUMULATIVE",
-  "rounding": "HALF_UP_TO_PENNY",
+  "rounding": "HALF_UP_TO_CENT",
   "bands": [
-    { "minimumIncomePence": 0, "maximumIncomePence": 2400000, "rateBasisPoints": 0 },
-    { "minimumIncomePence": 4900001, "maximumIncomePence": null, "rateBasisPoints": 1250 },
-    { "minimumIncomePence": 2400001, "maximumIncomePence": 4900000, "rateBasisPoints": 300 }
+    { "minimumIncomeCents": 0, "maximumIncomeCents": 2400000, "rateBasisPoints": 0 },
+    { "minimumIncomeCents": 4900001, "maximumIncomeCents": null, "rateBasisPoints": 1250 },
+    { "minimumIncomeCents": 2400001, "maximumIncomeCents": 4900000, "rateBasisPoints": 300 }
   ]
 }
