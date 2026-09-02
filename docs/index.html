@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interviewtopia Tax Policy API</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.32.14/swagger-ui.css" />
+    <style>
+      body {
+        margin: 0;
+        background: #fafafa;
+      }
+      .documentation-fallback {
+        margin: 1rem;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <p class="documentation-fallback">
+        JavaScript is required for Swagger UI. You can read the
+        <a href="../openapi.yaml">OpenAPI definition directly</a>.
+      </p>
+    </noscript>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@5.32.14/swagger-ui-bundle.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        SwaggerUIBundle({
+          url: '../openapi.yaml',
+          dom_id: '#swagger-ui',
+          deepLinking: true,
+          displayRequestDuration: true,
+          tryItOutEnabled: true,
+          validatorUrl: null,
+        })
+      })
+    </script>
+  </body>
+</html>

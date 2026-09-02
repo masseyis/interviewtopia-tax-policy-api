@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Interviewtopia Household Tax Policy API
+  version: 1.0.0
+  license:
+    name: All rights reserved
+  description: |
+    Returns the tax bands applicable to a household size.
+
+    The calculator remains non-cumulative: the selected band's rate applies to
+    the entire income. Final tax is rounded half up to the nearest cent. These
+    rules are fixed from the base exercise; only the bands vary by household size.
+servers:
+  - url: https://masseyis.github.io/interviewtopia-tax-policy-api
+security: []
+paths:
+  /policies/{residents}.json:
+    get:
+      summary: Get the policy bands for a household size
+      operationId: getHouseholdTaxPolicy
+      description: |
+        Returns one complete set of tax bands. The order of `bands` is not
+        guaranteed, so clients must not rely on response order.
+      parameters:
+        - name: residents
+          in: path
+          required: true
+          description: Number of people in the household.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 6
+          example: 2
+      responses:
+        "200":
+          description: Policy bands for the requested household size.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HouseholdTaxPolicy"
+              example:
+                policyId: interviewtopia-2026-household-2
+                residents: 2
+                currency: USD
+                bands:
+                  - minimumIncomeCents: 2750001
+                    maximumIncomeCents: null
+                    rateBasisPoints: 1750
+                  - minimumIncomeCents: 0
+                    maximumIncomeCents: 1500000
+                    rateBasisPoints: 0
+                  - minimumIncomeCents: 1500001
+                    maximumIncomeCents: 2750000
+                    rateBasisPoints: 750
+        "404":
+          description: No static fixture exists for the requested household size.
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  schemas:
+    HouseholdTaxPolicy:
+      type: object
+      additionalProperties: false
+      required:
+        - policyId
+        - residents
+        - currency
+        - bands
+      properties:
+        policyId:
+          type: string
+          description: Opaque identifier for this version of the policy.
+        residents:
+          type: integer
+          minimum: 1
+          maximum: 6
+          description: Household size used to select the policy.
+        currency:
+          type: string
+          enum:
+            - USD
+          description: Currency used by all monetary values.
+        bands:
+          type: array
+          minItems: 1
+          description: Complete set of inclusive, non-overlapping income bands. Order is not guaranteed.
+          items:
+            $ref: "#/components/schemas/TaxBand"
+    TaxBand:
+      type: object
+      additionalProperties: false
+      required:
+        - minimumIncomeCents
+        - maximumIncomeCents
+        - rateBasisPoints
+      properties:
+        minimumIncomeCents:
+          type: integer
+          minimum: 0
+          description: Inclusive lower income bound in integer cents.
+        maximumIncomeCents:
+          type: integer
+          minimum: 0
+          nullable: true
+          description: Inclusive upper income bound in integer cents, or null for no upper bound.
+        rateBasisPoints:
+          type: integer
+          minimum: 0
+          maximum: 10000
+          description: Tax rate in whole basis points; 1000 means 10 percent.

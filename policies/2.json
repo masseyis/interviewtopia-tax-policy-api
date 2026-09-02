@@ -2,8 +2,6 @@
   "policyId": "interviewtopia-2026-household-2",
   "residents": 2,
   "currency": "USD",
-  "calculation": "NON_CUMULATIVE",
-  "rounding": "HALF_UP_TO_CENT",
   "bands": [
     { "minimumIncomeCents": 2750001, "maximumIncomeCents": null, "rateBasisPoints": 1750 },
     { "minimumIncomeCents": 0, "maximumIncomeCents": 1500000, "rateBasisPoints": 0 },
